@@ -24,8 +24,8 @@ public class CalendrierAnnuel {
 	}
 	
 	public boolean reserver(int jour,int mois) {
-		boolean libre =  calendrier[mois].estLibre(jour);
-		if (libre) {
+		boolean libre =  calendrier[mois-1].estLibre(jour);
+		if(libre) {
 			calendrier[mois-1].reserver(jour);
 		}
 		return libre;
@@ -46,7 +46,8 @@ public class CalendrierAnnuel {
 			return jours[jour-1];
 		}
 		private void reserver(int jour){
-			if (!estLibre(jour-1)) {
+			System.out.println(estLibre(jour));
+			if (!estLibre(jour)) {
 				throw new IllegalStateException("Date is already reserved");
 			}else {
 				jours[jour-1]=false;
